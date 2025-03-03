@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<title>Pumping Pixelated CaveApe NinjaPunk Micro Arcade Game</title>
+	<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap&font-display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/cave-ape-punk-ninja.css">
+</head>
+<body>
+
+<div class="game-container">
+    <canvas id="gameCanvas"></canvas>
+    <div class="xchcoins" id="xchcoins">XCH coins: 0</div>
+    <div class="lives" id="lives">Lives: 3</div>
+    <div class="game-over" id="gameOver">Game Over</div>
+    <button class="restart-btn" id="restartBtn" onclick="restartGame()">Restart</button>
+    <button class="pause-btn" id="pauseBtn" onclick="togglePause()">Pause</button>
+    <div class="paused-message" id="pausedMessage">
+        Game Paused! Press Escape or click the Pause button to resume.<br>
+        If the game keeps pausing when pressing Space, click on the canvas to fix it.
+    </div>
+   
+    <button class="start-btn" id="startBtn" onclick="startGame()">Start Game</button>
+        <!-- Instructions Button -->
+    <button class="instructions-btn" id="instructionsBtn" onclick="openInstructions()">Instructions</button>
+	<button class="leaderboard-btn" id="leaderboardBtn" onclick="openLeaderboard()">Leaderboard</button>
+    <button class="cats-btn" id="catsBtn" onclick="addcats()">Insert CATs</button>
+    <div class="cats" id="catsDisplay">CATs: 0</div>
+    <div class="webview" id="webview">
+        <button class="closeWebview" onclick="closeWebview()">X</button>
+        <div class="message">
+            <p>Thank you for reading this information! #DYOR #NFA</p>
+            <p>This window will automatically close after 9 seconds and add 1 CAT.</p>
+        </div>
+        <div class="details">
+            <p><strong>Asset Name:</strong> <span id="assetName">Loading...</span></p>
+            <p><strong>Short Name:</strong> <span id="shortName">Loading...</span></p>
+            <p><strong>Asset ID:</strong> <span id="assetId">Loading...</span></p>
+            <p><strong>Pair ID:</strong> <span id="pairId">Loading...</span></p>
+            <p><strong>Verified:</strong> <span id="verified">Loading...</span></p>
+        </div>
+        <div class="wccontainer">
+			<div id="tokenImage"></div>
+			<div><img src="img/wcslot.webp" class="wcslot"></div>
+		</div>
+        <div class="countdown" id="countdownTimer">
+            <p>Closing in <span id="timer">9</span> seconds...</p>
+        </div>
+		<iframe src="https://api.v2.tibetswap.io/token/76f8a24339230dcf8f83d79a6d7823929671f9dcc564583ae17f5aafaeceb68c" id="webviewIframe" sandbox="allow-scripts allow-same-origin"></iframe>
+
+    </div>
+	<div id="gameOver" style="display:none;">
+		<h2>Game Over</h2>
+		<p id="finalScore">Your Score: </p>
+		<button onclick="openLeaderboard()">View Leaderboard</button>
+		<button onclick="restartGame()">Restart Game</button>
+	</div>
+    <div id="scoreForm" class="score-form">
+        <input type="text" id="nickname" placeholder="Enter your nickname" maxlength="22">
+        <button id="submitScore" onclick="submitScore()">Submit Score</button>
+    </div>
+	
+    <!-- Leaderboard Display -->
+    <div class="leaderboard" id="leaderboard" style="display:none;">
+        <h2>Leaderboard</h2>
+        <ul id="leaderboardList">
+            <!-- Top 3 scores will be displayed here -->
+        </ul>
+        <button onclick="closeLeaderboard()">Close</button>
+    </div>
+	<!-- Close Button Outside the Webview -->
+	<button class="close-instructions" onclick="closeInstructions()">X</button>
+    <!-- Instructions Webview -->
+    <div class="webview-instructions" id="webviewInstructions">
+        <div class="instructions-content">
+        <h2>Game Instructions</h2>
+		<p>Welcome, noble pixelated adventurer, to the one and only Pumping Pixelated CaveApe NinjaPunk Micro Arcade game! This is where Cave Apes NinjaPunks – the crypto cypher punks of the digital jungle – strive to collect as many XCH coins as humanly (or ape-ly?) possible. These primates evolved way back during the Paleozoic Era, probably around the same time as Bitcoin’s first moon landing, and they’ve been working the bull market ever since. They're not just apes... they’re **XCH-hungry**, **HODL-maniacs** who are *so* ready to "buy the dip" and "pump the moon." Ready to risk it all and dodge some totally weird obstacles for sweet digital coinage? Here’s how you play: </p>
+		<h2>Controls</h2>
+		<p>To make your CaveApe NinjaPunk jump [PUMP] like it’s been drinking too much espresso, just hit that [SPACEBAR] like it owes you money. Alternatively, just tap anywhere on the canvas (because, you know, technology) to get that primate airborne, grabbing all those precious XCH coins and riding that sweet bull market to victory. 🚀🐒💰</p>
+		<img src="img/ape_face.svg" class="imgsm">
+		<h2>OBSTACLES</h2>
+		<h2>S*E*C Bomb</h2>
+		<p>Oh boy... the S*E*C bomb. The most terrifying threat in the game. It’s like the I*R*S, but instead of tax forms, it’s armed with a sledgehammer aimed straight at your crypto dreams.  Avoid this ticking time bomb, and *don’t* mess with it unless you want to feel the heat. It's an instant mood killer. Just trust us – *nobody* likes a run-in with the S*E*C bomb. 💣😱</p>
+		<img src="img/bombsec.svg" class="imgsm">
+		<h2>NFT Bomb</h2>
+		<p>BOOM! The NFT bomb is here to ruin your day, one *explosive* drop at a time. It represents that weird time when people spent a fortune on pixelated punks and cats. Every time it blows up, you lose a life, like a bad investment in 2021. Keep jumping [PUMPING] like your life depends on it – because, well, it kind of does! 💥🐱💀</p>
+		<img src="img/nftbomb.svg" class="imgsm">
+		<h2>Fire Balls</h2>
+		<p>Warning: These fireballs travel faster than a crypto influencer who just heard “moon” on X <a href="https://x.com/ArcadeRetroVers" target="_blank">[Twitter]</a>. If they hit you, *poof* – you’re toast, like that time you bought Dogecoin at $0.74. Avoid these bad boys by jumping higher than a leveraged trader’s hopes before a massive crash. 🎯🔥💣</p>
+		<img src="img/fireballs.svg" class="imgsm">
+		<h2>Collectable Items</h2>
+		<p>Collect those XCH coins like you’re living your best bull-market life. Each one equals one glorious XCH point – a digital token of your greatness. But watch out – hearts are your friends! They represent the lifeblood of your crypto journey. Collect enough, and you’ll have a *long and healthy life in this wild game* (just don’t spend them all on rug pulls). ❤️🍀</p>
+		<p><img src="img/xch.svg" class="imgsm">   <img src="img/heart.svg" class="heart"></p>
+		<h2>CATs</h2>
+		<p>CATS are the secret sauce of this game. Not the adorable kind that sits on your keyboard and judges your life choices. No, these are Chia Asset Tokens! Think of them like those ancient arcade tokens you had to insert into machines before you even knew what "blockchain" meant. These little critters are all about fungible tokens and keeping your CAT collection pristine. They’re straight from the <a href="https://v2.tibetswap.io/%7BWC%7D" target="_blank">TibetSwap</a>, and they’re here to make sure you’re never short of digital fun. Plus, we picked a <a href='https://dexie.space/assets/%7BWC%7D' target="_blank">$WC</a> meme coin for the ride. Because, let’s be real, the whales in crypto can flush any coin down the <a href='https://dexie.space/offers/col1ht7n89ezzmxprsfv38wen0k5nqryaagacmfclnl4ga6xjsvwcemqf2hgj7/XCH' target="_blank">WC</a> faster than you can say ‘rug pull’- they’re basically the aquatic version of financial ninjas 🐳💩💸. Blink and it’s gone!</p>
+		<div class="wccontainer">
+		<img src="https://icons.dexie.space/76f8a24339230dcf8f83d79a6d7823929671f9dcc564583ae17f5aafaeceb68c.webp" class="imgsm">
+			<div id="tokenImage"></div>
+			<div><img src="img/wcslot.webp" class="wcslotsm"></div>
+		</div>
+		<h2>Creators</h2>
+		<p>This Micro Arcade game, Pumping Pixelated CaveApe NinjaPunk, is an homage to the *good ol' days* of arcade fun, mixed with the chaotic brilliance of Web3. We designed this little experiment as a “proof of concept” to celebrate the simple joys of gaming while you try not to get scammed out of your entire crypto portfolio. We chose <a href="https://www.chia.net/" target="_blank">Chia Blockchain</a> because it’s like the Swiss Army knife of crypto-super advanced, decentralized, and actually useful. It’s got this wild Proof of Space and Time protocol, which sounds like the kind of thing a wizard would use to keep track of his crypto cat collection! 🧙‍💾⏳  *Good luck*, you magnificent, pixelated adventurer! 🚀👾</p>
+		<div class="container"><div class="xlog"><a href="https://x.com/ArcadeRetroVers" target="_blank"><svg viewBox="0 0 1200 1227" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="none"> 
+		<path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z"></path> 
+		</svg></a></div>
+		<div class="git"><a href="https://github.com/ArcadeRetroVerse/CaveApeNinjaPunk" target="_blank">
+		<svg aria-hidden="true" viewBox="0 0 24 24" version="1.1" data-view-component="true">
+		<path d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.91.575.101.79-.244.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.13 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.39-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.662.79.547C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75Z"></path>
+		</svg></a>
+		</div></div>
+		<h2>Leaderboard</h2>
+		<p>Hold onto your rockets🚀 This game stores your nickname and score in your browser’s localStorage, like a sweet stash of crypto waiting for a pump. The top 3 scores are saved and blast off to the leaderboard - even after you refresh or close the browser. With just 1-5 KB of space used, it’s like a moon mission that fits in your pocket.🌑 Only the top 3 scores make the cut - HODL your place, or you’ll get left behind! 💥</p>
+		<h2>High Score and Personal Info</h2>
+		<p>Disclaimer: We are only interested in your high score, not your social security number or your mom’s maiden name. Seriously. Please don't leave any sensitive personal information in the High Score panel – we’ve got your privacy covered like a VPN on a public Wi-Fi network. We’re only recording the top 3 high scores, so don’t go spilling your life story here. And don’t worry – we’re complying with all those laws, like CCPA, GDPR, HIPAA, and the *definitely real* DPDPA (that last line is just for fun, we made it up!).
+		#DYOR and definitely Not Financial Advice😎🎮💾</p>
+		<ul>
+                <li>And try to survive as long as possible on the Crypto Rollercoaster, where the drops are steeper than your portfolio after a market dip and the loops are like trying to explain NFTs to your grandma 🎢💸😂</li>
+				<li>Good Luck and Have Fun🌱</li>
+            </ul>
+        </div>
+    </div>
+</div>
+	<script src="js/cave-ape-punk-ninja.js?v=1.0" type="text/javascript" async></script>
+	<script>
+		// Function to check if the browser is an old version of Safari (pre-ES6)
+		function isOldSafari() {
+			// Check the user-agent to detect old Safari versions (Safari 9 and below)
+			var ua = navigator.userAgent;
+			
+			// Detect Safari (without WebKit, which is used by Chrome too)
+			var isSafari = /Safari/.test(ua) && !/Chrome/.test(ua);
+			
+			// Check for Safari version
+			var safariVersion = parseInt((ua.match(/Version\/(\d+)/) || [])[1]);
+			
+			// Return true if Safari version is <= 10, otherwise false
+			return isSafari && safariVersion <= 10;
+		}
+		
+		// If the browser is detected as an old Safari, show a message and prevent the script from loading
+		if (isOldSafari()) {
+			alert("Your browser is not supported. Please update Safari to the latest version or use a different browser.");
+		}
+	</script>
+	</body>
+</html>

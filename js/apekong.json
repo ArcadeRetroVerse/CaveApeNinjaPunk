@@ -1,0 +1,39 @@
+{
+  "format": "CHIP-0007",
+  "name": "ArcadeRetroVerse",
+  "description": "ArcadeRetroVerse",
+  "sensitive_content": false,
+  "collection": {
+    "name": "ArcadeRetroVerse",
+    "id": "A1R2C3A4D5E-5R6E7-8T9R0-O1X2C-3X4Y5O6V7E8R9S0E",
+    "attributes": [
+      {
+        "type": "description",
+        "value": "Step into the ArcadeRetroVerse, where your pixels are eternal, your scores are high, and your nostalgia never runs out of quarters!"
+      },
+      {
+        "type": "X",
+        "value": "@ArcadeRetroVers"
+      },
+      {
+        "type": "icon",
+        "value": "https://arcaderetroverse.github.io/CaveApeNinjaPunk/img/icon.webp"
+      },
+      {
+        "type": "banner",
+        "value": "https://arcaderetroverse.github.io/CaveApeNinjaPunk/img/banner.webp"
+      }
+    ]
+  },
+  "attributes": [
+  {
+    "trait_type": "HTML",
+    "value": "https://arcaderetroverse.github.io/CaveApeNinjaPunk/"
+  }
+],
+  "data": {
+    "@context": "https://schema.org",
+    "@type": "WebContent",
+    "url": "https://arcaderetroverse.github.io/CaveApeNinjaPunk/"
+  }
+}

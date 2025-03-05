@@ -169,10 +169,10 @@
         display: none;
         font-family: 'Press Start 2P', sans-serif;
         position: absolute;
-        top: 60%;
+        top: 30%;
         left: 50%;
         transform: translateX(-50%);
-		width: auto;
+	width: auto;
         height: auto;
         background-color: white;
         padding: 20px;
@@ -410,10 +410,17 @@
             font-size: 30px;
         }
 
-        .restart-btn, .pause-btn, .cats-btn {
+        .pause-btn, .cats-btn {
             font-size: 14px;
             padding: 10px 20px;
         }
+	
+	.restart-btn {
+        font-size: 14px;
+        padding: 10px 20px;
+	top: 85%;
+	left: 50%;
+	}
 
         .paused-message {
             font-size: 14px;

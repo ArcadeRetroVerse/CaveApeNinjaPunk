@@ -451,15 +451,17 @@
 
     // Restart the game
     function restartGame() {
-	    if (cats <= 0) {
-        alert("You need to insert CATs first!");
+    	if (cats <= 0) {
+        // Show the WebView container with a message
+        let webviewContainer = document.getElementById('webviewContainer');
+        // Display the WebView container
+        webviewContainer.style.display = 'flex';
         return; // Prevent the game from starting if cats are 0
     }
-    
         cats--; // Deduct 1 credit
-		updateCATs(); // Update the cats display
+	updateCATs(); // Update the cats display
 		
-		// Reset the game state
+	// Reset the game state
         xchcoins = 0;
         lives = 3;
         gameOver = false;

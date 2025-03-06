@@ -436,7 +436,7 @@
 		gameOver = true;
 		document.getElementById('gameOver').style.display = 'block'; // Show the game over screen
 		document.getElementById('finalScore').textContent = `Your Score: ${xchcoins}`; // Display the player's score
-	
+		document.getElementById('restartBtn').style.display = 'block'; // Show the restart button
 		// Check if the score qualifies for the leaderboard
 		let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
 		if (leaderboard.length < 3 || xchcoins > leaderboard[leaderboard.length - 1].score) {
@@ -444,8 +444,6 @@
 		} else {
 			document.getElementById('scoreForm').style.display = 'none';  // Don't show the form if score isn't top 3
 		}
-	
-		document.getElementById('restartBtn').style.display = 'block'; // Show the restart button
 	}
 
 

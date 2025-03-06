@@ -20,7 +20,13 @@
         Game Paused! Press Escape or click the Pause button to resume.<br>
         If the game keeps pausing when pressing Space, click on the canvas to fix it.
     </div>
-   
+   <!-- WebView to show CAT message -->
+	<div class="webviewcats" id="webviewContainer" style="display: none;">
+		<div id="messageContainer">
+        <h2>You need to insert CATs first 🐱</h2>
+    </div>
+	<button class="closectsWebview" onclick="closeicatsWebview()">OK</button>
+    </div>
     <button class="start-btn" id="startBtn" onclick="startGame()">Start Game</button>
         <!-- Instructions Button -->
     <button class="instructions-btn" id="instructionsBtn" onclick="openInstructions()">Instructions</button>

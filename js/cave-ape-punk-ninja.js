@@ -17,7 +17,7 @@
     // Update the game loop to check for hearts
     let hearts = []; // Array to store heart objects
     let xchcoins = 0;
-	let cats = 0; // Track the number of cats
+    let cats = 0; // Track the number of cats
     let lives = 3;
     let velocityY = 0;
     let gravity = 0.2;
@@ -718,7 +718,7 @@
 		gameLoop(); // Start the game loop
 	}
 
-	// Start the game loop
+   // Start the game loop
     function gameLoop() {
         update();
         requestAnimationFrame(gameLoop);

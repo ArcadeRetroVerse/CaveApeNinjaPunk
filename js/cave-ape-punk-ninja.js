@@ -472,6 +472,7 @@
         document.getElementById('restartBtn').style.display = 'none';
         isPaused = false; // Unpause the game
         document.getElementById('pausedMessage').style.display = 'none';
+	gameLoop();
     }
 
     // Toggle pause

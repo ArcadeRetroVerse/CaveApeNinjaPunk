@@ -693,12 +693,22 @@
 		document.getElementById('catsDisplay').textContent = `CATs: ${cats}`;
 		document.getElementById('startBtn').disabled = cats <= 0; // Disable Start button if cats are 0
 	}
-			
-	function startGame() {
-		if (cats <= 0) {
-			alert("You need to insert CATs first!");
-			return; // Prevent the game from starting if cats are 0
+	
+	function closeicatsWebview() {
+    		let webviewContainer = document.getElementById('webviewContainer');
+    		webviewContainer.style.display = 'none'; // Hide the WebView when the close button is clicked
 	}
+	
+	function startGame() {
+    		if (cats <= 0) {
+        	// Show the WebView container with a message
+        	let webviewContainer = document.getElementById('webviewContainer');
+        
+        	// Display the WebView container
+       	 	webviewContainer.style.display = 'flex';
+        
+        	return; // Prevent the game from starting if cats are 0
+    	}
 		
 		cats--; // Deduct 1 credit
 		updateCATs(); // Update the cats display

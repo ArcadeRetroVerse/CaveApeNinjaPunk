@@ -472,6 +472,7 @@
         document.getElementById('restartBtn').style.display = 'none';
         isPaused = false; // Unpause the game
         document.getElementById('pausedMessage').style.display = 'none';
+	document.getElementById('webviewContainer').style.display = 'none'
 	gameLoop();
     }
 
@@ -545,6 +546,7 @@
 		// Pause the game when the "Insert CATs" button is pressed
 		isPaused = true;
 		document.getElementById('pausedMessage').style.display = 'block'; // Show pause message
+		document.getElementById('webviewContainer').style.display = 'none'
 
     	const webview = document.getElementById('webview');
 		webview.style.display = 'block'; // Display the webview
@@ -716,6 +718,7 @@
 		document.getElementById('startBtn').style.display = 'none'; // Hide the Start button
 		isPaused = false; // Unpause the game
 		document.getElementById('pausedMessage').style.display = 'none';
+		document.getElementById('webviewContainer').style.display = 'none'
 		gameLoop(); // Start the game loop
 	}
 
